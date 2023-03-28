@@ -8,11 +8,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/pulkitgangwar/next.js-snippets"
+    "url": "https://github.com/pulkitgangwar/nextjs-app-directory-commands"
   },
   "publisher": "PulkitGangwar",
   "bugs": {
-    "url": "https://github.com/pulkitgangwar/next.js-snippets/issues"
+    "url": "https://github.com/pulkitgangwar/nextjs-app-directory-commands/issues"
   },
   "icon": "images/icon.png",
   "keywords": [
@@ -34,14 +34,21 @@
     "Other"
   ],
   "activationEvents": [
-    "onStartupFinished"
+    "onCommand:nextjs-app-directory-commands"
   ],
   "main": "./out/extension.js",
   "contributes": {
+    "keybindings": [
+      {
+        "key": "alt+shift+o",
+        "mac": "cmd+shift+o",
+        "command": "nextjs-app-directory-commands.page"
+      }
+    ],
     "commands": [
       {
-        "command": "nextjs-app-directory-commands.helloWorld",
-        "title": "Hello World"
+        "command": "nextjs-app-directory-commands.page",
+        "title": "Page : (generate page in app directory)"
       }
     ]
   },
