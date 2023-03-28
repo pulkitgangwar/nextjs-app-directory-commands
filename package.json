@@ -6,11 +6,35 @@
   "engines": {
     "vscode": "^1.76.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pulkitgangwar/next.js-snippets"
+  },
+  "publisher": "PulkitGangwar",
+  "bugs": {
+    "url": "https://github.com/pulkitgangwar/next.js-snippets/issues"
+  },
+  "icon": "images/icon.png",
+  "keywords": [
+    "nextjs",
+    "next.js",
+    "next-js",
+    "app directory",
+    "nextjs app directory",
+    "next.js app directory",
+    "next-js app directory",
+    "app directory commands for nextjs",
+    "app directory commands for next.js",
+    "app directory commands for next-js",
+    "react",
+    "javascript",
+    "typescript"
+  ],
   "categories": [
     "Other"
   ],
   "activationEvents": [
-    "onCommand:nextjs-app-directory-commands.helloWorld"
+    "onStartupFinished"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -30,16 +54,20 @@
     "test": "node ./out/test/runTest.js"
   },
   "devDependencies": {
-    "@types/vscode": "^1.76.0",
     "@types/glob": "^8.0.0",
     "@types/mocha": "^10.0.1",
     "@types/node": "16.x",
+    "@types/vscode": "^1.76.0",
     "@typescript-eslint/eslint-plugin": "^5.45.0",
     "@typescript-eslint/parser": "^5.45.0",
+    "@vscode/test-electron": "^2.2.0",
     "eslint": "^8.28.0",
     "glob": "^8.0.3",
     "mocha": "^10.1.0",
-    "typescript": "^4.9.3",
-    "@vscode/test-electron": "^2.2.0"
-  }
+    "typescript": "^4.9.3"
+  },
+  "dependencies": {
+    "walker": "^1.0.8"
+  },
+  "license": "MIT"
 }
