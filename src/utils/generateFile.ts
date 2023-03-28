@@ -16,7 +16,9 @@ export async function generateFile(
 
   const directories: { name: string; path: string }[] = [];
   const directoryPicker = vscode.window.createQuickPick();
+  directoryPicker.placeholder = "Where to place this route directory?";
   const templatePicker = vscode.window.createQuickPick();
+  templatePicker.placeholder = "Select the files to create in route directory.";
   templatePicker.canSelectMany = true;
   templatePicker.items = [
     { label: "Page" },
