@@ -1,14 +1,14 @@
 export function getTemplate(file: string) {
   const templates = {
-    "page.ts": `
+    "page.tsx": `
     export default function Page() {
       return <h1>Hello, Next.js!</h1>;
     }`,
-    "page.js": `
+    "page.jsx": `
     export default function Page() {
       return <h1>Hello, Next.js!</h1>;
     }`,
-    "layout.ts": `
+    "layout.tsx": `
     export default function Layout({
       children,
     }: {
@@ -21,7 +21,7 @@ export function getTemplate(file: string) {
         </section>
       );
     }`,
-    "layout.js": `
+    "layout.jsx": `
     export default function Layout({
       children, 
     }) {
@@ -32,15 +32,17 @@ export function getTemplate(file: string) {
         </section>
       );
     }`,
-    "loading.ts": `
+    "loading.tsx": `
     export default function Loading() {
       return <div>Loading..</div>
     }`,
-    "loading.js": `
+    "loading.jsx": `
     export default function Loading() {
       return <div>Loading..</div>
     }`,
-    "error.ts": `
+    "error.tsx": `
+    "use client"
+
     import { useEffect } from 'react';
 
     export default function Error({
@@ -68,7 +70,9 @@ export function getTemplate(file: string) {
       );
     }
     `,
-    "error.js": `
+    "error.jsx": `
+    "use client" 
+
     import { useEffect } from 'react';
 
 export default function Error({

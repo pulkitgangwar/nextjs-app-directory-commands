@@ -2,7 +2,9 @@
 
 Helper to create pages in app directory
 
-# How to use?
+![next js-snippets-gif](/images/nextjs-commands-helper.gif)
+
+# Instructions to use?
 
 1. Press <kbd>cmd</kbd> + <kbd>shift</kbd> + <kbd>o</kbd> in Mac
    or Press <kbd>alt</kbd> + <kbd>shift</kbd> + <kbd>o</kbd>.

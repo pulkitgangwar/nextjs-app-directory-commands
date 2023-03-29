@@ -28,6 +28,13 @@ export async function generateFile(
   ];
 
   Walker(project.rootPath + appDirectoryPath)
+    .filterDir((dir: any, stat: any) => {
+      if (dir === project.rootPath + appDirectoryPath + "/api") {
+        console.log("skipping api folder");
+        return false;
+      }
+      return true;
+    })
     .on("dir", (dir: any, stat: any) => {
       directories.push({
         name: dir.split("/")[dir.split("/").length - 1],
@@ -58,7 +65,7 @@ export async function generateFile(
       const files = templatePicker.selectedItems.map(
         (selection) =>
           `${selection.label.toLowerCase()}.${
-            project.typescriptEnabled ? "ts" : "js"
+            project.typescriptEnabled ? "tsx" : "jsx"
           }`
       );
       for await (let file of files) {
@@ -76,7 +83,7 @@ export async function generateFile(
       await vscode.commands.executeCommand(
         "vscode.open",
         vscode.Uri.file(
-          directoryPath + `/page.${project.typescriptEnabled ? "ts" : "js"}`
+          directoryPath + `/page.${project.typescriptEnabled ? "tsx" : "jsx"}`
         )
       );
     } else {
