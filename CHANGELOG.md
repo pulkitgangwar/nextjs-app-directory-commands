@@ -4,6 +4,12 @@ All notable changes to the "nextjs-app-directory-commands" extension will be doc
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## 1.0.1 - 2023/04/05
+
+### Added
+
+- Command to show flowchart for app directory.
+
 ## 1.0.0 - 2023/03/29
 
 ### Added

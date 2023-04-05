@@ -2,7 +2,7 @@
   "name": "nextjs-app-directory-commands",
   "displayName": "Nextjs App Directory Commands",
   "description": "Efficient way to create pages in nextjs app directory",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "engines": {
     "vscode": "^1.76.0"
   },
@@ -48,11 +48,11 @@
     "commands": [
       {
         "command": "nextjs-app-directory-commands.page",
-        "title": "Page : (generate page in app directory)"
+        "title": "Page: (generate page in app directory)"
       },
       {
         "command": "nextjs-app-directory-commands.flowchart",
-        "title": "App directory flowchart"
+        "title": "Flowchart: (generate app directory flow chart)"
       }
     ]
   },
