@@ -1,7 +1,8 @@
 import * as vscode from "vscode";
-import { generateFile } from "./utils/generateFile";
+import { generateFile } from "./utils/page/generateFile";
 import { getAppDirectoryPath } from "./utils/getAppDirectoryPath";
 import { getProjectInfo } from "./utils/getProjectInfo";
+import { generateFlowChart } from "./utils/flowchart/generateFlowChart";
 
 export async function activate(context: vscode.ExtensionContext) {
   const project = await getProjectInfo();
@@ -27,7 +28,22 @@ export async function activate(context: vscode.ExtensionContext) {
     }
   );
 
+  let flowchartCommandDispose = vscode.commands.registerCommand(
+    "nextjs-app-directory-commands.flowchart",
+    async () => {
+      const panel = vscode.window.createWebviewPanel(
+        "Flowchart",
+        "Flow Chart",
+        vscode.ViewColumn.One,
+        { enableScripts: true }
+      );
+
+      generateFlowChart(panel, project, appDirectoryPath);
+    }
+  );
+
   context.subscriptions.push(pageCommandDispose);
+  context.subscriptions.push(flowchartCommandDispose);
 }
 
 // This method is called when your extension is deactivated
