@@ -2,7 +2,7 @@
 
 Helper to create pages in app directory
 
-![next js-snippets-gif](/images/nextjs-commands-helper.gif)
+![nextjs-commands-helper](https://user-images.githubusercontent.com/50038851/228541222-a6eb3488-4240-46a2-be08-68fa90c1f551.gif)
 
 # Instructions to use?
 
@@ -12,3 +12,4 @@ Helper to create pages in app directory
 3. Select under which route does the directory will be placed.
 4. Choose the templates
 5. Click okay
+

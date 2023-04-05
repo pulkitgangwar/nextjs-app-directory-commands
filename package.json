@@ -2,7 +2,7 @@
   "name": "nextjs-app-directory-commands",
   "displayName": "Nextjs App Directory Commands",
   "description": "Efficient way to create pages in nextjs app directory",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "engines": {
     "vscode": "^1.76.0"
   },
