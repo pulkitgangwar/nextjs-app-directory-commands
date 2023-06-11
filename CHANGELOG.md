@@ -4,6 +4,16 @@ All notable changes to the "nextjs-app-directory-commands" extension will be doc
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+
+## 1.0.2 - 2023/06/11
+
+### Fixed
+
+- Problems related to path in windows system.
+- Command not found problem.
+
+### Added
+
 ## 1.0.1 - 2023/04/05
 
 ### Added
