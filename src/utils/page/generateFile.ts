@@ -1,6 +1,7 @@
 import * as vscode from "vscode";
 import * as Walker from "walker";
 import * as fs from "fs";
+import * as path from "path";
 import { getFileName } from "./getFileName";
 import { generateVscodePage } from "./generateVscodePage";
 
@@ -27,9 +28,9 @@ export async function generateFile(
     { label: "Loading" },
   ];
 
-  Walker(project.rootPath + appDirectoryPath)
+  Walker(path.join(project.rootPath, appDirectoryPath))
     .filterDir((dir: any, stat: any) => {
-      if (dir === project.rootPath + appDirectoryPath + "/api") {
+      if (dir === path.join(project.rootPath, appDirectoryPath, "/api")) {
         console.log("skipping api folder");
         return false;
       }
@@ -37,13 +38,15 @@ export async function generateFile(
     })
     .on("dir", (dir: any, stat: any) => {
       directories.push({
-        name: dir.split("/")[dir.split("/").length - 1],
+        name: dir.split(path.sep)[dir.split(path.sep).length - 1],
         path: dir,
       });
     })
     .on("end", () => {
       directoryPicker.items = directories.map((dir) => ({
-        label: `${dir.name} -> ${dir.path.split(`${project.rootPath}/`)[1]}`,
+        label: `${dir.name} -> ${
+          dir.path.split(`${path.join(project.rootPath, path.sep)}`)[1]
+        }`,
         value: dir.path,
       }));
       directoryPicker.show();
@@ -52,7 +55,7 @@ export async function generateFile(
   let directoryPath = "";
   directoryPicker.onDidChangeSelection(async (selection) => {
     if (selection[0]) {
-      const pagePath = (selection[0] as any).value + `/${fileName}`;
+      const pagePath = path.join((selection[0] as any).value, `/${fileName}`);
 
       directoryPath = pagePath;
       directoryPicker.hide();
@@ -69,7 +72,7 @@ export async function generateFile(
           }`
       );
       for await (let file of files) {
-        if (fs.existsSync(directoryPath + `/${file}`)) {
+        if (fs.existsSync(path.join(directoryPath, `/${file}`))) {
           vscode.window.showErrorMessage("File already exists.");
           templatePicker.hide();
           return;
@@ -83,7 +86,10 @@ export async function generateFile(
       await vscode.commands.executeCommand(
         "vscode.open",
         vscode.Uri.file(
-          directoryPath + `/page.${project.typescriptEnabled ? "tsx" : "jsx"}`
+          path.join(
+            directoryPath,
+            `/page.${project.typescriptEnabled ? "tsx" : "jsx"}`
+          )
         )
       );
     } else {
@@ -94,12 +100,10 @@ export async function generateFile(
   });
 
   directoryPicker.onDidHide(() => {
-    console.log("directory picker disposed");
     directoryPicker.dispose();
   });
 
   templatePicker.onDidHide(() => {
-    console.log("template picker disposed");
     directoryPicker.dispose();
   });
 }
