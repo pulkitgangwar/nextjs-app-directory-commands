@@ -1,13 +1,12 @@
 import * as vscode from "vscode";
 import * as promisedFs from "fs/promises";
+import * as path from "path";
 
 export async function getProjectInfo() {
   const files = await vscode.workspace.findFiles(
     "**/package.json",
     "**/node_modules/**"
   );
-
-  console.log(files);
 
   if (!files.length) {
     return;
@@ -19,7 +18,7 @@ export async function getProjectInfo() {
   };
 
   for await (let file of files) {
-    const packageJson = await promisedFs.readFile(file.path, {
+    const packageJson = await promisedFs.readFile(file.fsPath, {
       encoding: "utf8",
     });
     const projectConfig: any = await JSON.parse(packageJson);
@@ -30,7 +29,7 @@ export async function getProjectInfo() {
       continue;
     }
 
-    project.rootPath = file.path.split("/package.json")[0];
+    project.rootPath = file.fsPath.split("package.json")[0];
     project.typescriptEnabled =
       (projectConfig?.devDependencies &&
         Object.keys(projectConfig?.devDependencies).includes("typescript")) ||

@@ -5,20 +5,20 @@ import { getProjectInfo } from "./utils/getProjectInfo";
 import { generateFlowChart } from "./utils/flowchart/generateFlowChart";
 
 export async function activate(context: vscode.ExtensionContext) {
-  const project = await getProjectInfo();
-  if (!project) {
-    vscode.window.showErrorMessage("Unable to find package.json");
-    return;
-  }
-  const appDirectoryPath = getAppDirectoryPath(project.rootPath);
-  if (!appDirectoryPath) {
-    vscode.window.showErrorMessage("Cannot find app folder");
-    return;
-  }
-
   let pageCommandDispose = vscode.commands.registerCommand(
     "nextjs-app-directory-commands.page",
     async () => {
+      const project = await getProjectInfo();
+      if (!project) {
+        vscode.window.showErrorMessage("Unable to find package.json");
+        return;
+      }
+      const appDirectoryPath = getAppDirectoryPath(project.rootPath);
+      if (!appDirectoryPath) {
+        vscode.window.showErrorMessage("Cannot find app folder");
+        return;
+      }
+
       if (!project || !project.rootPath || !appDirectoryPath) {
         vscode.window.showErrorMessage("Cannot find project");
         return;
@@ -31,6 +31,17 @@ export async function activate(context: vscode.ExtensionContext) {
   let flowchartCommandDispose = vscode.commands.registerCommand(
     "nextjs-app-directory-commands.flowchart",
     async () => {
+      const project = await getProjectInfo();
+      if (!project) {
+        vscode.window.showErrorMessage("Unable to find package.json");
+        return;
+      }
+      const appDirectoryPath = getAppDirectoryPath(project.rootPath);
+      if (!appDirectoryPath) {
+        vscode.window.showErrorMessage("Cannot find app folder");
+        return;
+      }
+
       const panel = vscode.window.createWebviewPanel(
         "Flowchart",
         "Flow Chart",

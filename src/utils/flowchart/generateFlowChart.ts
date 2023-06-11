@@ -1,5 +1,6 @@
 import * as vscode from "vscode";
 import * as Walker from "walker";
+import * as path from "path";
 import { generateFlowChartText } from "./generateFlowChartText";
 import { getWebviewContent } from "./getWebviewContent";
 
@@ -13,22 +14,23 @@ export function generateFlowChart(
 ) {
   let directoryTuple: any = [];
 
-  Walker(project.rootPath + appDirectoryPath)
+  Walker(path.join(project.rootPath, appDirectoryPath))
     .filterDir((dir: any, stat: any) => {
-      if (dir === project.rootPath + appDirectoryPath + "/api") {
+      if (dir === path.join(project.rootPath, appDirectoryPath, "/api")) {
         console.log("skipping api folder");
         return false;
       }
       return true;
     })
     .on("dir", (dir: any, stat: any) => {
-      const dirName = dir.split(project.rootPath + appDirectoryPath)[1];
+      const dirName = dir.split(
+        path.join(project.rootPath, appDirectoryPath, path.sep)
+      )[1];
       if (!dirName) return;
 
       const dirTuple: string[] = dirName
-        .split("/")
+        .split(path.sep)
         .filter((dirSlice: string) => dirSlice);
-      console.log(dirTuple);
       if (dirTuple.length === 1) {
         directoryTuple.push(["app", dirTuple[0]]);
       } else {
@@ -39,7 +41,6 @@ export function generateFlowChart(
       }
     })
     .on("end", () => {
-      console.log(generateFlowChartText(directoryTuple));
       panel.webview.html = getWebviewContent(
         generateFlowChartText(directoryTuple)
       );
